@@ -1,6 +1,5 @@
-@extends('layouts.MainMembers')
-
-@section('Container')
+@extends('layouts.main')
+    @section('container')
 
     <div class="container mt-5">
         <div class="row">
@@ -8,30 +7,34 @@
 
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        {{--  <a href="{{ route('shoppingcarts.create') }}" class="btn btn-md btn-success mb-3">Insert shoppingcart</a>  --}}
+                        {{--  <a href="{{ route('Transactions.create') }}" class="btn btn-md btn-success mb-3">Insert Transaction</a>  --}}
                         <table class="table" border="0">
                             <thead>
                               <tr>
-                                <th scope="col">Image</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Price</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Order Price</th>
+                                <th scope="col">Shipping Cost</th>
+                                <th scope="col">Total Cost</th>
+                                <th scope="col">Date Order</th>
 
                                 <th scope="col">Menu</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @forelse ($ShoppingCarts as $shoppingcart)
+                              @forelse ($Transactions as $Transaction)
                                 <tr>
 
-                                    <td>{{ $shoppingcart->id_product }}</td>
-                                    <td>{!! $shoppingcart->id_category !!}</td>
-                                    <td>{!! $shoppingcart->amount !!}</td>
-                                    <td>{!! $shoppingcart->price !!}</td>
+                                    <td>{{ $Transaction->member_name }}</td>
+                                    <td>{!! $Transaction->id_product !!}</td>
+                                    <td>{!! $Transaction->allprice !!}</td>
+                                    <td>{!! $Transaction->shippingcost !!}</td>
+                                    <td>{!! $Transaction->totalcost !!}</td>
+                                    <td>{!! $Transaction->transactionmonth !!}</td>
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('shoppingcarts.destroy', $shoppingcart->id) }}" method="POST">
-                                            <a href="{{ route('shoppingcarts.show', $shoppingcart->id) }}" class="btn btn-sm btn-dark">Show </a>
-                                            <a href="{{ route('shoppingcarts.edit', $shoppingcart->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('transactions.destroy', $Transaction->id) }}" method="POST">
+                                            <a href="{{ route('transactions.show', $Transaction->id) }}" class="btn btn-sm btn-dark">Show </a>
+                                            <a href="{{ route('transactions.edit', $Transaction->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
@@ -40,12 +43,12 @@
                                 </tr>
                               @empty
                                   <div class="alert alert-danger">
-                                      Data shoppingcart Not Found.
+                                      Data Transaction Not Found.
                                   </div>
                               @endforelse
                             </tbody>
                           </table>
-                          {{--  {{ $shoppingcarts->links() }}  --}}
+                          {{--  {{ $Transactions->links() }}  --}}
                     </div>
                 </div>
             </div>

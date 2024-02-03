@@ -235,7 +235,7 @@
                 <p>{{ $product->category }}</p>
                 <div class="portfolio-links">
                     <a href="{{ asset('/storage/products/'.$product->image) }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="View {{ $product->name }}"><i class="bi bi-images"></i></a>
-                    <a href="{{ route('dashboardindexs.show', $product->id) }}" title="More Details"><i class="bi bi-eye"></i></a>
+                    <a href="{{ route('index.show', $product->id) }}" title="More Details"><i class="bi bi-eye"></i></a>
                     <a href="{{ route('dashboardindexs.show', $product->id) }}" title="add Cart"><i class="bi bi-bag-check"></i></a>
                 </div>
               </div>

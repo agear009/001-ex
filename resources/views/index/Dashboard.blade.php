@@ -200,22 +200,17 @@
             <th scope="col">Name</th>
             <th scope="col">Amount</th>
             <th scope="col">Price</th>
-
             <th scope="col">Menu</th>
           </tr>
         </thead>
         <tbody>
           @forelse ($ShoppingCarts as $shoppingcart)
             <tr>
-
-                <td>
-
-                    <img src=" {{ asset('/storage/products/'.$shoppingcart->products_image) }}" width="60" height="45"></td>
+                <td><img src=" {{ asset('/storage/products/'.$shoppingcart->products_image) }}" width="60" height="45"></td>
                 <td>{!! $shoppingcart->id_category !!}</td>
                 <td>{!! $shoppingcart->amount !!}</td>
                 <td>{!! $shoppingcart->price !!}</td>
-                <td class="text-center">
-
+                <td class="">
                     <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('dashboardindexs.destroy', $shoppingcart->id) }}" method="POST">
 
                         <a href="{{ route('dashboardindexs.edit', $shoppingcart->id) }}" class="btn btn-sm btn-primary">Order</a>
@@ -248,22 +243,26 @@
     <table class="table" border="0">
         <thead>
           <tr>
-            <th scope="col">Image</th>
-            <th scope="col">Name</th>
-            <th scope="col">Amount</th>
+            <th scope="col">Product</th>
             <th scope="col">Price</th>
+            <th scope="col">Shipping Cost</th>
+            <th scope="col">Total</th>
+            <th scope="col">Order</th>
+            <th scope="col">Status</th>
 
             <th scope="col">Menu</th>
           </tr>
         </thead>
         <tbody>
-          @forelse ($ShoppingCarts as $shoppingcart)
+          @forelse ($Transactions as $Transaction)
             <tr>
 
-                <td>{{ $shoppingcart->id_product }}</td>
-                <td>{!! $shoppingcart->id_category !!}</td>
-                <td>{!! $shoppingcart->amount !!}</td>
-                <td>{!! $shoppingcart->price !!}</td>
+                <td>{{ $Transaction->id_product }}</td>
+                <td>{!! $Transaction->allprice !!}</td>
+                <td>{!! $Transaction->shippingcost !!}</td>
+                <td>{!! $Transaction->totalcost !!}</td>
+                <td>{!! $Transaction->transactionmonth !!}</td>
+                <td>{!! $Transaction->status !!}</td>
                 <td class="text-center">
                     <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('shoppingcarts.destroy', $shoppingcart->id) }}" method="POST">
                         <a href="{{ route('shoppingcarts.show', $shoppingcart->id) }}" class="btn btn-sm btn-dark">Show </a>

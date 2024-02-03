@@ -30,9 +30,10 @@ class DashboardIndexController extends Controller
         $Categoryproducts = categoryproduct::all();
         $Products = product::all();
         $Countries=country::all();
+        $Transactions=Transaction::all();
        // $ShoppingCarts=ShoppingCart::all();
         $User=user::findOrFail(auth()->user()->id);
-        return view('Index.Dashboard',["title"=>"home","active"=>"Login",'Countries'=>$Countries],compact('Categoryproducts','Products','User','ShoppingCarts'));
+        return view('Index.Dashboard',["title"=>"home","active"=>"Login",'Countries'=>$Countries],compact('Categoryproducts','Products','User','ShoppingCarts','Transactions'));
     }
 
     public function show(string $id)
@@ -94,6 +95,7 @@ class DashboardIndexController extends Controller
 
         $stock=product::findOrFail('id_product');
         dd($stock);
+        exit;
         $pengurangan=$stock-$request['amount'];
         dd($pengurangan);
 

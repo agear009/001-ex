@@ -8,20 +8,27 @@
             <div class="col-md-8">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <img src="{{ asset('storage/products/'.$product->image) }}" class="w-100 rounded">
+                        <img src="{{ asset('/storage/products/'.$ShoppingCart->product_image) }}" class="w-100 rounded">
                         <hr>
-                        <h4>{{ $product->name }}</h4>
+                        <label>Product Name</label>
+                        <h4>{{ $ShoppingCart->id_product }}</h4>
+
+                        <label>Product Category</label>
                         <p class="tmt-3">
-                            {!! $product->amount!!}
+                            {!! $ShoppingCart->id_category!!}
                         </p>
+
+                        <label>Product Orderer</label>
                         <p class="tmt-3">
-                            {!! $product->price!!}
+                            {!! $ShoppingCart->id_member!!}
                         </p>
+                        <label>Order Amount</label>
                         <p class="tmt-3">
-                            {!! $product->category!!}
+                            {!! $ShoppingCart->amount!!}
                         </p>
+                        <label>Product Price</label>
                         <p class="tmt-3">
-                            {!! $product->description!!}
+                            {!! $ShoppingCart->price!!}
                         </p>
                     </div>
                 </div>

@@ -69,5 +69,6 @@ Route::resource('/products', \App\Http\Controllers\ProductController::class);
 Route::resource('/shippingcosts', \App\Http\Controllers\ShippingcostController::class);
 Route::resource('/dashboardindexs', \App\Http\Controllers\DashboardIndexController::class);
 Route::resource('/shoppingcarts', \App\Http\Controllers\ShoppingCartController::class);
+Route::resource('/transactions', \App\Http\Controllers\TransactionController::class);
 Route::get('/dashboard',  [DashboardController::class,'index']);
 });

@@ -31,7 +31,7 @@ class ShoppingCartController extends Controller
        // $ShoppingCarts = ShoppingCart::latest()->paginate(5);
 
         //render view ShoppingCart
-        return view('ShoppingCarts.index',["title"=>"ShoppingCart",'active'=>'ShoppingCart'],compact('ShoppingCarts'));
+        return view('ShoppingCarts.Index',["title"=>"ShoppingCart",'active'=>'ShoppingCart'],compact('ShoppingCarts'));
     }
     // untuk menampilkan form tambah data
     public function create(): view {
@@ -73,7 +73,9 @@ class ShoppingCartController extends Controller
     {
 
         //get pos id
-        $ShoppingCart=ShoppingCart::findorFail($id);
+        //$ShoppingCart=ShoppingCart::findorFail($id);
+        $modelgetListgetListshoppingCartById = new shoppingCart;
+        $ShoppingCart=$modelgetListgetListshoppingCartById->getListshoppingCartById($id);
 
         //render view with ShoppingCart
         return view('ShoppingCarts.show',["title"=>"Show",'active'=>'ShoppingCart'],compact('ShoppingCart'));
@@ -82,7 +84,10 @@ class ShoppingCartController extends Controller
     public function edit(string $id):View
     {
         //get ShoppingCart by id
-        $ShoppingCart=ShoppingCart::findOrFail($id);
+        //$ShoppingCart=ShoppingCart::findOrFail($id);
+        $modelgetListsthreeTablesById = new shoppingCart;
+        $ShoppingCart=$modelgetListsthreeTablesById->getListsthreeTablesById($id);
+       // dd($ShoppingCart);
         return view('ShoppingCarts.edit',["title"=>"Edit",'active'=>'ShoppingCart'], compact('ShoppingCart'));
 
     }
@@ -93,49 +98,20 @@ class ShoppingCartController extends Controller
 
         $this->validate($request,[
 
-            'image'=>'image|mimes:jpeg,jpg,png|max:2048',
-            'title' =>'required|max:255',
-            'slug' =>'required|max:255',
-            'category' =>'required|min:2|max:255',
-            'content' =>'required|min:5'
+            'status' =>'required'
         ]);
         //get ShoppingCart by id
         $ShoppingCart=ShoppingCart::FindOrFail($id);
 
-        if($request->hasFile('image'))
-        {
-            //upload new image
-            $image=$request->file('image');
 
-            $image->storeAs('public/ShoppingCarts',$image->hashName());
-
-
-            //delete old image
-            Storage::delete('public/ShoppingCarts/'.$ShoppingCart->image);
-
-            //update ShoppingCart with new image
             $ShoppingCart->update([
 
-                'image' =>$image->hashName(),
-                'title' =>$request->slug,
-                'slug' =>$request->title,
-                'category' =>$request->category,
-                'content'=>$request->content
+
+            'status'=>$request->status
             ]);
 
-        }
-        else
-        {
-            $ShoppingCart->update([
 
-            'title' =>$request->title,
-            'slug' =>$request->slug,
-            'category' =>$request->category,
-            'content'=>$request->content
-            ]);
-
-        }
-        return redirect()->route('ShoppingCarts.Index',["title"=>"ShoppingCart",'active'=>'ShoppingCart'])->with(['success'=>'data berhasil diubah!']);
+        return redirect()->route('shoppingcarts.index',["title"=>"ShoppingCart",'active'=>'ShoppingCart'])->with(['success'=>'data berhasil diubah!']);
 
     }
 
@@ -152,6 +128,6 @@ class ShoppingCartController extends Controller
         $ShoppingCart->delete();
 
         //redirect to index
-        return redirect()->route('ShoppingCarts.Index',["title"=>"ShoppingCart",'active'=>'ShoppingCart'])->with(['success'=>'data telah berhasil di delete!']);
+        return redirect()->route('shoppingcarts.index',["title"=>"ShoppingCart",'active'=>'ShoppingCart'])->with(['success'=>'deleted !']);
     }
 }

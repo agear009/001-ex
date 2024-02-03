@@ -24,4 +24,16 @@ class IndexController extends Controller
         //$Posts = Post::all();
         return view('index.index',["title"=>"home","active"=>"index",'Countries'=>$Countries],compact('Categoryproducts','Products','Abouts','Categorys','Posts'));
     }
+    public function show(string $id)
+    {
+       $product=product::findOrFail($id);
+       // $product=product::findOrFail($id)->get();
+        //tambah ->get(); untuk error bool $Products=product::findOrFail($id)
+
+        //dd($product);
+
+        return view('index.detail',["title"=>"Detail","active"=>"Detail"],compact('product'));
+
+
+    }
 }

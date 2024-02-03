@@ -36,7 +36,7 @@
   ======================================================== -->
 </head>
 
-<body>
+<body class="bodyindex">
     @include('Partials.Header')
 
     @yield('Container')

@@ -34,4 +34,17 @@ class ShoppingCart extends Model
                                     ->get();
     return $getListshoppingCartById[0];
     }
+
+    public function getListsthreeTablesById($id)
+    {
+        $shares = DB::table('shopping_carts')
+        ->join('users','shopping_carts.id_member' , '=','users.id' )
+        ->join('products', 'products.id', '=', 'shopping_carts.id_product')
+        ->where('shopping_carts.id','=',$id)
+        ->select('shopping_carts.*','products.image AS product_image','products.name As product_name','users.name AS user_name')
+        ->get();
+        return $shares[0];
+    }
+
+
 }

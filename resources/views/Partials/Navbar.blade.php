@@ -46,8 +46,20 @@
           </li>
 
           <li class="nav-item">
+            <a class="nav-link {{ ($active==="Shoppingcart")?'active':'' }}" href="{{ route('shoppingcarts.index') }}">Shoppingcart</a>
+          </li>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link {{ ($active==="Transaction")?'active':'' }}" href="{{ route('transactions.index') }}">Transaction</a>
+          </li>
+
+
+          <li class="nav-item">
             <a class="nav-link {{ ($active==="About")?'active':'' }}" href="{{ route('abouts.index') }}">About</a>
           </li>
+
+
 
         </ul>
         <ul class="navbar-nav ms-auto">

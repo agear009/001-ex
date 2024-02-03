@@ -1,6 +1,5 @@
-@extends('layouts.MainMembers')
-
-@section('Container')
+@extends('layouts.main')
+    @section('container')
 
     <div class="container mt-5">
         <div class="row">
@@ -14,9 +13,10 @@
                               <tr>
                                 <th scope="col">Image</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">Category</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Price</th>
-
+                                <th scope="col">Status</th>
                                 <th scope="col">Menu</th>
                               </tr>
                             </thead>
@@ -24,14 +24,16 @@
                               @forelse ($ShoppingCarts as $shoppingcart)
                                 <tr>
 
-                                    <td>{{ $shoppingcart->id_product }}</td>
+                                    <td><img src=" {{ asset('/storage/products/'.$shoppingcart->products_image) }}" width="60" height="45"></td>
+                                    <td>{!! $shoppingcart->id_product !!}</td>
                                     <td>{!! $shoppingcart->id_category !!}</td>
                                     <td>{!! $shoppingcart->amount !!}</td>
                                     <td>{!! $shoppingcart->price !!}</td>
+                                    <td>{!! $shoppingcart->status !!}</td>
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('shoppingcarts.destroy', $shoppingcart->id) }}" method="POST">
+                                        <form onsubmit="return confirm('Are you sure ?');" action="{{ route('shoppingcarts.destroy', $shoppingcart->id) }}" method="POST">
                                             <a href="{{ route('shoppingcarts.show', $shoppingcart->id) }}" class="btn btn-sm btn-dark">Show </a>
-                                            <a href="{{ route('shoppingcarts.edit', $shoppingcart->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                            <a href="{{ route('shoppingcarts.edit', $shoppingcart->id) }}" class="btn btn-sm btn-primary">Proses</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
