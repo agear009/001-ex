@@ -26,12 +26,15 @@ class IndexController extends Controller
     }
     public function show(string $id)
     {
-       $product=product::findOrFail($id);
+       //$product=product::findOrFail($id);
        // $product=product::findOrFail($id)->get();
-        //tambah ->get(); untuk error bool $Products=product::findOrFail($id)
+       //tambah ->get(); untuk error bool $Products=product::findOrFail($id)
 
-        //dd($product);
-
+        //dd($id);
+        $modelproductById = new product;
+        $product=$modelproductById->getListproductsById($id);
+        //var_dump($product);
+        //exit;
         return view('index.detail',["title"=>"Detail","active"=>"Detail"],compact('product'));
 
 
